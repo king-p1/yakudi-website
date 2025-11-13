@@ -1,0 +1,12 @@
+/* Webfont: Namian-BlackItalic */@font-face {
+    font-family: 'NamianBlackIta';
+    src: url('Namian-BlackItalic.eot'); /* IE9 Compat Modes */
+    src: url('Namian-BlackItalic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('Namian-BlackItalic.woff') format('woff'), /* Modern Browsers */
+         url('Namian-BlackItalic.woff2') format('woff2'), /* Modern Browsers */
+         url('Namian-BlackItalic.ttf') format('truetype'); /* Safari, Android, iOS */
+             font-style: italic;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+

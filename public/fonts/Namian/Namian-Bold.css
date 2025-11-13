@@ -1,0 +1,12 @@
+/* Webfont: Namian-Bold */@font-face {
+    font-family: 'Namian';
+    src: url('Namian-Bold.eot'); /* IE9 Compat Modes */
+    src: url('Namian-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('Namian-Bold.woff') format('woff'), /* Modern Browsers */
+         url('Namian-Bold.woff2') format('woff2'), /* Modern Browsers */
+         url('Namian-Bold.ttf') format('truetype'); /* Safari, Android, iOS */
+             font-style: normal;
+    font-weight: bold;
+    text-rendering: optimizeLegibility;
+}
+

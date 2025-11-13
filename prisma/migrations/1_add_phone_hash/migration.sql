@@ -1,0 +1,2 @@
+-- Migration already applied at database level
+-- phoneHash column and unique index exist in the database

@@ -1,0 +1,12 @@
+/* Webfont: Namian-SemiBold */@font-face {
+    font-family: 'NamianSemBd';
+    src: url('Namian-SemiBold.eot'); /* IE9 Compat Modes */
+    src: url('Namian-SemiBold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('Namian-SemiBold.woff') format('woff'), /* Modern Browsers */
+         url('Namian-SemiBold.woff2') format('woff2'), /* Modern Browsers */
+         url('Namian-SemiBold.ttf') format('truetype'); /* Safari, Android, iOS */
+             font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+

@@ -1,0 +1,12 @@
+/* Webfont: Namian-Light */@font-face {
+    font-family: 'NamianLight';
+    src: url('Namian-Light.eot'); /* IE9 Compat Modes */
+    src: url('Namian-Light.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('Namian-Light.woff') format('woff'), /* Modern Browsers */
+         url('Namian-Light.woff2') format('woff2'), /* Modern Browsers */
+         url('Namian-Light.ttf') format('truetype'); /* Safari, Android, iOS */
+             font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+

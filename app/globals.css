@@ -1,0 +1,903 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+
+  --font-display: "Inter", "sans-serif";
+  --color-primary-500: oklch(0.84 0.18 117.33);
+  --spacing: 0.25rem;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+
+/* ========== NAMIAN FONT FAMILY ========== */
+/* Namian Light */
+@font-face {
+  font-family: 'Namian';
+  src: url('/fonts/Namian/Namian-Light.woff2') format('woff2'),
+       url('/fonts/Namian/Namian-Light.woff') format('woff'),
+       url('/fonts/Namian/Namian-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Namian';
+  src: url('/fonts/Namian/Namian-LightItalic.woff2') format('woff2'),
+       url('/fonts/Namian/Namian-LightItalic.woff') format('woff'),
+       url('/fonts/Namian/Namian-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Namian Regular */
+@font-face {
+  font-family: 'Namian';
+  src: url('/fonts/Namian/Namian-Regular.woff2') format('woff2'),
+       url('/fonts/Namian/Namian-Regular.woff') format('woff'),
+       url('/fonts/Namian/Namian-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Namian';
+  src: url('/fonts/Namian/Namian-RegularItalic.woff2') format('woff2'),
+       url('/fonts/Namian/Namian-RegularItalic.woff') format('woff'),
+       url('/fonts/Namian/Namian-RegularItalic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Namian Medium */
+@font-face {
+  font-family: 'Namian';
+  src: url('/fonts/Namian/Namian-Medium.woff2') format('woff2'),
+       url('/fonts/Namian/Namian-Medium.woff') format('woff'),
+       url('/fonts/Namian/Namian-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Namian';
+  src: url('/fonts/Namian/Namian-MediumItalic.woff2') format('woff2'),
+       url('/fonts/Namian/Namian-MediumItalic.woff') format('woff'),
+       url('/fonts/Namian/Namian-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Namian SemiBold */
+@font-face {
+  font-family: 'Namian';
+  src: url('/fonts/Namian/Namian-SemiBold.woff2') format('woff2'),
+       url('/fonts/Namian/Namian-SemiBold.woff') format('woff'),
+       url('/fonts/Namian/Namian-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Namian';
+  src: url('/fonts/Namian/Namian-SemiBoldItalic.woff2') format('woff2'),
+       url('/fonts/Namian/Namian-SemiBoldItalic.woff') format('woff'),
+       url('/fonts/Namian/Namian-SemiBoldItalic.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Namian Bold */
+@font-face {
+  font-family: 'Namian';
+  src: url('/fonts/Namian/Namian-Bold.woff2') format('woff2'),
+       url('/fonts/Namian/Namian-Bold.woff') format('woff'),
+       url('/fonts/Namian/Namian-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Namian';
+  src: url('/fonts/Namian/Namian-BoldItalic.woff2') format('woff2'),
+       url('/fonts/Namian/Namian-BoldItalic.woff') format('woff'),
+       url('/fonts/Namian/Namian-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Namian ExtraBold */
+@font-face {
+  font-family: 'Namian';
+  src: url('/fonts/Namian/Namian-ExtraBold.woff2') format('woff2'),
+       url('/fonts/Namian/Namian-ExtraBold.woff') format('woff'),
+       url('/fonts/Namian/Namian-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Namian';
+  src: url('/fonts/Namian/Namian-ExtraBoldItalic.woff2') format('woff2'),
+       url('/fonts/Namian/Namian-ExtraBoldItalic.woff') format('woff'),
+       url('/fonts/Namian/Namian-ExtraBoldItalic.ttf') format('truetype');
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Namian Black */
+@font-face {
+  font-family: 'Namian';
+  src: url('/fonts/Namian/Namian-Black.woff2') format('woff2'),
+       url('/fonts/Namian/Namian-Black.woff') format('woff'),
+       url('/fonts/Namian/Namian-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Namian';
+  src: url('/fonts/Namian/Namian-BlackItalic.woff2') format('woff2'),
+       url('/fonts/Namian/Namian-BlackItalic.woff') format('woff'),
+       url('/fonts/Namian/Namian-BlackItalic.ttf') format('truetype');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ========== SHARP SANS FONT FAMILY ========== */
+/* Sharp Sans Thin */
+@font-face {
+  font-family: 'Sharp Sans';
+  src: url('/fonts/sharp-sans/Sharp%20Sans%20Thin.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Sharp Sans';
+  src: url('/fonts/sharp-sans/Sharp%20Sans%20Thin%20Italic.otf') format('opentype');
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Sharp Sans Light */
+@font-face {
+  font-family: 'Sharp Sans';
+  src: url('/fonts/sharp-sans/Sharp%20Sans%20Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Sharp Sans';
+  src: url('/fonts/sharp-sans/Sharp%20Sans%20Light%20Italic.otf') format('opentype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Sharp Sans Regular */
+@font-face {
+  font-family: 'Sharp Sans';
+  src: url('/fonts/sharp-sans/Sharp%20Sans.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Sharp Sans';
+  src: url('/fonts/sharp-sans/Sharp%20Sans%20Italic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Sharp Sans Medium */
+@font-face {
+  font-family: 'Sharp Sans';
+  src: url('/fonts/sharp-sans/Sharp%20Sans%20Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Sharp Sans';
+  src: url('/fonts/sharp-sans/Sharp%20Sans%20Medium%20Italic.otf') format('opentype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Sharp Sans Semibold */
+@font-face {
+  font-family: 'Sharp Sans';
+  src: url('/fonts/sharp-sans/Sharp%20Sans%20Semibold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Sharp Sans';
+  src: url('/fonts/sharp-sans/Sharp%20Sans%20Semibold%20Italic.otf') format('opentype');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Sharp Sans Bold */
+@font-face {
+  font-family: 'Sharp Sans';
+  src: url('/fonts/sharp-sans/Sharp%20Sans%20Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Sharp Sans';
+  src: url('/fonts/sharp-sans/Sharp%20Sans%20Bold%20Italic.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Sharp Sans ExtraBold */
+@font-face {
+  font-family: 'Sharp Sans';
+  src: url('/fonts/sharp-sans/Sharp%20Sans%20Extrabold.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Sharp Sans';
+  src: url('/fonts/sharp-sans/Sharp%20Sans%20ExtraBold%20Italic.otf') format('opentype');
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ========== CUSTOM FONT UTILITY CLASSES ========== */
+/* Namian Font Classes */
+.font-namian-light {
+  font-family: 'Namian', sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.font-namian-light-italic {
+  font-family: 'Namian', sans-serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.font-namian-regular {
+  font-family: 'Namian', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.font-namian-regular-italic {
+  font-family: 'Namian', sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.font-namian-medium {
+  font-family: 'Namian', sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.font-namian-medium-italic {
+  font-family: 'Namian', sans-serif;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.font-namian-semibold {
+  font-family: 'Namian', sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.font-namian-semibold-italic {
+  font-family: 'Namian', sans-serif;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.font-namian-bold {
+  font-family: 'Namian', sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.font-namian-bold-italic {
+  font-family: 'Namian', sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.font-namian-extrabold {
+  font-family: 'Namian', sans-serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.font-namian-extrabold-italic {
+  font-family: 'Namian', sans-serif;
+  font-weight: 800;
+  font-style: italic;
+}
+
+.font-namian-black {
+  font-family: 'Namian', sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.font-namian-black-italic {
+  font-family: 'Namian', sans-serif;
+  font-weight: 900;
+  font-style: italic;
+}
+
+/* Sharp Sans Font Classes */
+.font-sharp-thin {
+  font-family: 'Sharp Sans', sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.font-sharp-thin-italic {
+  font-family: 'Sharp Sans', sans-serif;
+  font-weight: 100;
+  font-style: italic;
+}
+
+.font-sharp-light {
+  font-family: 'Sharp Sans', sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.font-sharp-light-italic {
+  font-family: 'Sharp Sans', sans-serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.font-sharp-regular {
+  font-family: 'Sharp Sans', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.font-sharp-regular-italic {
+  font-family: 'Sharp Sans', sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.font-sharp-medium {
+  font-family: 'Sharp Sans', sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.font-sharp-medium-italic {
+  font-family: 'Sharp Sans', sans-serif;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.font-sharp-semibold {
+  font-family: 'Sharp Sans', sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.font-sharp-semibold-italic {
+  font-family: 'Sharp Sans', sans-serif;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.font-sharp-bold {
+  font-family: 'Sharp Sans', sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.font-sharp-bold-italic {
+  font-family: 'Sharp Sans', sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.font-sharp-extrabold {
+  font-family: 'Sharp Sans', sans-serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.font-sharp-extrabold-italic {
+  font-family: 'Sharp Sans', sans-serif;
+  font-weight: 800;
+  font-style: italic;
+}
+
+
+
+
+
+
+
+
+
+
+/* app/globals.css or components/WaitlistNumber.css */
+
+/* ========== Phone Input Wrapper ========== */
+.phone-input-wrapper {
+  @apply p-3 relative;
+}
+
+/* ========== Container ========== */
+.custom-phone-container {
+  @apply w-full;
+}
+
+/* ========== Input Field ========== */
+.custom-phone-input {
+   
+  font-family: inherit !important;
+  height: auto !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.custom-phone-input::placeholder {
+  font-family: 'Sharp Sans', sans-serif;
+  font-weight: 500;
+  opacity: 0.7;
+}
+
+/* ========== Country Selector Button ========== */
+.custom-phone-button {
+  @apply border-none! bg-transparent!  rounded-md!;
+  @apply transition-all! duration-200!;
+  @apply flex! items-center! gap-2!;
+  padding: 4px 8px !important;
+}
+
+.custom-phone-button .flag {
+  @apply rounded-xs! ;
+}
+/* .custom-phone-button:hover{
+  background: transparent;
+} */
+.custom-phone-button .arrow {
+  @apply text-muted-foreground!;
+}
+
+/* ========== Dropdown Container ========== */
+.custom-phone-dropdown {
+  @apply mt-2! rounded-md! border! border-border!;
+  @apply bg-background/95! backdrop-blur-xl!;
+  @apply shadow-2xl! shadow-black/10!;
+  @apply overflow-hidden!;
+  max-height: 300px !important;
+  min-width: 320px !important;
+  /* animation: slideInFromTop 200ms cubic-bezier(0.16, 1, 0.3, 1) !important; */
+  z-index: 9999 !important;
+  top: 100% !important;
+  bottom: auto !important;
+  margin-top: 8px !important;
+  
+}
+
+/* ========== Search Input ========== */
+ 
+
+.custom-phone-search {
+  @apply w-full! px-4! py-3!  border-none! outline-none!;
+  @apply text-sm! placeholder:text-muted-foreground!;
+  @apply focus:bg-accent!;
+  @apply transition-colors! duration-200!;
+  @apply sticky! top-0! z-10!;
+  /* background: hsl(var(--background)) !important;  
+  border-bottom: 1px solid hsl(var(--border)) !important;
+  box-shadow: 0 1px 0 0 hsl(var(--border)) !important;
+  z-index: 9999; */
+}
+
+.custom-phone-search:focus {
+  @apply ring-0!;
+  background: hsl(var(--accent) / 0.5) !important;
+}
+
+/* ========== Country List ========== */
+.custom-phone-dropdown .country-list {
+  @apply overflow-y-auto!;
+  max-height: 240px !important;
+  padding: 0 !important;
+}
+
+.custom-phone-dropdown .search-emoji {
+  display: none !important;
+}
+
+.custom-phone-search {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23888888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cpath d='m21 21-4.35-4.35'%3E%3C/path%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: 12px center !important;
+  padding-left: 40px !important;
+}
+/* form-control custom-phone-input */
+/* ========== Individual Country Items ========== */
+.custom-phone-dropdown .country-list {
+  @apply overflow-y-auto!;
+  max-height: 280px !important;
+  padding: 0 !important;
+  background: hsl(var(--background)) !important; /* Solid background */
+}
+
+.custom-phone-dropdown .country {
+  @apply px-4! py-2.5!;
+  @apply hover:bg-accent/70! cursor-pointer!;
+  @apply transition-all! duration-150!;
+  @apply flex! items-center! gap-3!;
+  @apply text-sm!;
+  @apply border-b! border-border/50! last:border-b-0!;
+  background: transparent !important;
+}
+
+.custom-phone-dropdown .country:hover {
+  /* @apply transform! translate-x-1!; */
+}
+
+.custom-phone-dropdown .country.highlight {
+  @apply bg-primary/10! text-primary!;
+  @apply font-semibold!;
+}
+
+/* Country Flag */
+.custom-phone-dropdown .country .flag {
+  @apply rounded-xs!;
+  margin-right: 8px !important;
+}
+
+/* Country Name */
+.custom-phone-dropdown .country .country-name {
+  @apply flex-1! font-medium!;
+}
+
+
+/* Dial Code */
+.custom-phone-dropdown .country .dial-code {
+  @apply text-muted-foreground! text-xs!;
+}
+
+/* ========== Your Custom Scrollbar (Minimal) ========== */
+.custom-phone-dropdown .country-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-phone-dropdown .country-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-phone-dropdown .country-list::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 0px;
+}
+
+.custom-phone-dropdown .country-list::-webkit-scrollbar-thumb:hover {
+  background: #454343;
+}
+
+/* ========== Dropdown Animation ========== */
+@keyframes slideInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+
+/* ========== Remove Default Styles ========== */
+.react-tel-input .form-control {
+  @apply border-none!;
+}
+
+.react-tel-input .flag-dropdown {
+  @apply border-none!;
+}
+
+/* Add to your existing globals.css */
+
+/* Join button pulse animation */
+@keyframes pulse-shadow {
+  0%, 100% {
+    box-shadow: 0 10px 25px -5px rgba(var(--primary-rgb), 0.25);
+  }
+  50% {
+    box-shadow: 0 10px 35px -5px rgba(var(--primary-rgb), 0.4);
+  }
+}
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 520px) {
+  .mobile-top {
+    padding: 0.5rem; /* Tailwind p-2 = 0.5rem = 8px */
+  }
+  .mobile-center {
+    text-align: center; /* Tailwind p-2 = 0.5rem = 8px */
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.shimmer-text-1 {
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(
+    90deg,
+    #1E4C44 0%,
+    #1E4C44 45%,
+    rgb(59, 183, 162) 50%,
+    #1E4C44 55%,
+    #1E4C44 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer-1 6s linear infinite;
+}
+
+@keyframes shimmer-1 {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.shimmer-text-2 {
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(
+    90deg,
+    #1E4C44 0%,
+    #1E4C44 45%,
+    rgb(59, 183, 162) 50%,
+    #1E4C44 55%,
+    #1E4C44 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer-2 6s linear infinite;
+  animation-delay: 3s;
+}
+
+@keyframes shimmer-2 {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.shimmer-text-1:hover,
+.shimmer-text-2:hover {
+  animation-duration: 3s;
+}

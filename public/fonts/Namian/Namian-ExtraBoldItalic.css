@@ -1,0 +1,12 @@
+/* Webfont: Namian-ExtraBoldItalic */@font-face {
+    font-family: 'NamianExtBdIta';
+    src: url('Namian-ExtraBoldItalic.eot'); /* IE9 Compat Modes */
+    src: url('Namian-ExtraBoldItalic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('Namian-ExtraBoldItalic.woff') format('woff'), /* Modern Browsers */
+         url('Namian-ExtraBoldItalic.woff2') format('woff2'), /* Modern Browsers */
+         url('Namian-ExtraBoldItalic.ttf') format('truetype'); /* Safari, Android, iOS */
+             font-style: italic;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+
