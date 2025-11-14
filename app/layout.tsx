@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
  
 export const metadata: Metadata = {
   title: "Yakudi",
-  description: "Transforming credit across Nigreria.",
+  description: "Empowering peer to peer lending and borrowing across Africa.",
 };
 
 export default function RootLayout({
