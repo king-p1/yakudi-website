@@ -7,6 +7,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { PromoVideoDialog } from "./promo-video-dialog";
 
 const FAQItems = [
   {
@@ -86,6 +87,18 @@ export const FAQ = () => {
             Curious about YAKUDI?
           </h2>
         </motion.div>
+        
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-120px" }}
+          transition={{ duration: 0.8 }}
+          className="text-center -mt-2 mb-6 md:mb-16"
+        >
+        <PromoVideoDialog/>
+        </motion.div>
+
+
 
         {/* FAQ Accordion */}
         <div className="space-y-4">
