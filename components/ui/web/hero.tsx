@@ -9,7 +9,7 @@ import demoImg from '@/public/demo-image.png'
 
 export const Hero = () => {
   return (
-    <section className="w-full py-20 mobile-top lg:py-32">
+    <section className="w-full py-10 mobile-top px-8 lg:py-12">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Column - Content */}

@@ -72,7 +72,7 @@ when we launch.`,
 
 export const FAQ = () => {
   return (
-    <section id="faqs" className="py-8 lg:py-12 -mt-10 mb-4 9990"> {/* Add proper padding */}
+    <section id="faqs" className="py-8 lg:py-12 md:-mt-10 mb-4 9990"> {/* Add proper padding */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -102,11 +102,11 @@ export const FAQ = () => {
                   value={item.id}
                   className="rounded-[4px] transition-all duration-300 mb-4 overflow-visible"
                 >
-                  <AccordionTrigger className="bg-white border rounded-[4px] font-sharp-semibold text-foreground hover:text-[#1B5E40] p-4 text-left ">
+                  <AccordionTrigger className=" bg-white border rounded-[4px] font-sharp-semibold text-foreground hover:text-[#1B5E40] p-4 text-left ">
                     <span className="text-lg">{item.question}</span>
                   </AccordionTrigger>
-                  <AccordionContent className="mt-4 rounded-[4px] shadow-2xl backdrop-blur-lg font-sharp-medium text-foreground/80 px-6 pb-6 pt-4 bg-white/80">
-                    <div className="pt-2">
+                  <AccordionContent className=" mt-1  rounded-[4px] shadow-lg backdrop-blur-sm font-sharp-medium text-foreground/80 px-6 pb-6 pt-4 bg-white/80">
+                    <div className="pt-2 ">
                       {item.answer}
                     </div>
                   </AccordionContent>

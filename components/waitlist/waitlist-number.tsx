@@ -15,10 +15,47 @@ import { PartyPopper } from '@/components/animate-ui/icons/party-popper';
 
 // Country-specific phone length validation
 const COUNTRY_PHONE_LENGTHS: Record<string, { min: number; max: number }> = {
-  ng: { min: 10, max: 11 }, // Nigeria: +234 XXX XXX XXXX (11 digits after +234)
+  ng: { min: 10, max: 10 }, // Nigeria: +2348055063013 (10 digits: 8055063013)
   us: { min: 10, max: 10 }, // USA: +1 XXX XXX XXXX (10 digits after +1)
   ca: { min: 10, max: 10 }, // Canada: +1 XXX XXX XXXX (10 digits after +1)
   gb: { min: 10, max: 10 }, // UK: +44 XXXX XXXXXX (10 digits after +44)
+};
+
+// Nigerian phone validation - first digit must be 7, 8, or 9
+const validateNigerianPhone = (digitsWithoutDialCode: string): boolean => {
+  if (digitsWithoutDialCode.length !== 10) return false;
+  const firstDigit = digitsWithoutDialCode[0];
+  return ['7', '8', '9'].includes(firstDigit);
+};
+
+// Format phone display with last 4 digits grouped/spaced
+const formatPhoneDisplay = (phoneValue: string, countryCode: string): { display: string; last4: string; formatted: string } => {
+  const digitsOnly = phoneValue.replace(/\D/g, '');
+
+  if (digitsOnly.length < 4) {
+    return { display: phoneValue, last4: '', formatted: phoneValue };
+  }
+
+  const last4 = digitsOnly.slice(-4);
+
+  // Format: show all digits but with spacing before last 4
+  // For Nigeria: +234 804 506 301   3
+  let formatted = phoneValue;
+  if (countryCode === 'ng' && digitsOnly.length >= 10) {
+    const dialCode = digitsOnly.slice(0, 3); // 234
+    const middleDigits = digitsOnly.slice(3, -4); // 8045063
+    const lastFour = digitsOnly.slice(-4); // 0313
+
+    // Format as: +234 804 506 301   3 (groups of 3, then space, then last digit)
+    const group1 = middleDigits.slice(0, 3); // 804
+    const group2 = middleDigits.slice(3, 6); // 506
+    const group3 = lastFour.slice(0, 3); // 301
+    const lastDigit = lastFour.slice(-1); // 3
+
+    formatted = `+${dialCode} ${group1} ${group2} ${group3}   ${lastDigit}`;
+  }
+
+  return { display: phoneValue, last4, formatted };
 };
 
 export const WaitlistNumber = ({isStacked, onSuccess, showInternalSuccess = true}:{
@@ -51,10 +88,10 @@ export const WaitlistNumber = ({isStacked, onSuccess, showInternalSuccess = true
 
     // Get digits only (remove country code)
     const digitsOnly = phoneValue.replace(/\D/g, '');
-    
+
     // Get validation rules for country
     const rules = COUNTRY_PHONE_LENGTHS[country.toLowerCase()];
-    
+
     if (!rules) {
       // Default validation for other countries
       return digitsOnly.length >= 10 && digitsOnly.length <= 15;
@@ -70,6 +107,11 @@ export const WaitlistNumber = ({isStacked, onSuccess, showInternalSuccess = true
 
     const dialCodeLength = dialCodeLengths[country.toLowerCase()] || 0;
     const numberWithoutDialCode = digitsOnly.slice(dialCodeLength);
+
+    // Special validation for Nigerian numbers
+    if (country.toLowerCase() === 'ng') {
+      return validateNigerianPhone(numberWithoutDialCode);
+    }
 
     return (
       numberWithoutDialCode.length >= rules.min &&
@@ -144,10 +186,10 @@ export const WaitlistNumber = ({isStacked, onSuccess, showInternalSuccess = true
         <div className={cn(
           isStacked
             ? "flex flex-col gap-4"
-            : "flex flex-col sm:flex-row gap-3 sm:gap-4"
+            : "flex flex-col md:flex-row gap-4"
         )}>
 
-        <div className={cn("space-y-3 flex-1", isStacked ? "w-full" : "grow")}>
+        <div className={cn("space-y-3", isStacked ? "w-full" : "flex-1")}>
           {/* Phone Input Container */}
           <div className="relative w-full">
             <div
@@ -181,6 +223,7 @@ export const WaitlistNumber = ({isStacked, onSuccess, showInternalSuccess = true
                     required: true,
                     autoFocus: false,
                   }}
+                  
                 />
               </div>
 
@@ -229,6 +272,7 @@ export const WaitlistNumber = ({isStacked, onSuccess, showInternalSuccess = true
                 </motion.p>
               )}
             </AnimatePresence>
+ 
           </div>
 
           {/* Join Button */}
@@ -242,7 +286,7 @@ export const WaitlistNumber = ({isStacked, onSuccess, showInternalSuccess = true
               'flex items-center justify-center gap-2',
               'transition-all duration-300',
               'disabled:bg-[#1E4C44] disabled:text-white disabled:cursor-not-allowed',
-              isStacked ? 'w-full' : 'w-full sm:w-[140px]',
+              isStacked ? 'w-full' : 'w-full md:w-auto md:shrink-0 md:min-w-[140px]',
               isValid
                 ? 'cursor-pointer text-primary-foreground shadow-lg shadow-primary/25 bg-[#1E4C44] hover:bg-[#1E4C44]/90'
                 : 'bg-muted text-muted-foreground '

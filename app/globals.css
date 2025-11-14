@@ -806,6 +806,7 @@
 @media screen and (max-width: 520px) {
   .mobile-top {
     padding: 0.5rem; /* Tailwind p-2 = 0.5rem = 8px */
+    margin-top: 20px;
   }
   .mobile-center {
     text-align: center; /* Tailwind p-2 = 0.5rem = 8px */

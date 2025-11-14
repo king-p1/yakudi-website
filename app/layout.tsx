@@ -21,9 +21,9 @@ export default function RootLayout({
         <div
         className={cn(
          "fixed inset-0 -z-10",
-          "bg-size-[20px_20px]",
-          "bg-[radial-gradient(#d4d4d4_0.8.8px,transparent_1px)]",
-          "dark:bg-[radial-gradient(#404040_1px,transparent_1px)]"
+          "bg-size-[12px_12px]",
+          "bg-[radial-gradient(#d4d4d4_0.8px,transparent_1px)]",
+          "dark:bg-[radial-gradient(#404040_0.8px,transparent_1px)]"
         )}
       />
         {children}

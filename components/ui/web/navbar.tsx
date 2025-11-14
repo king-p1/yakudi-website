@@ -41,10 +41,11 @@ export const Navbar = () => {
 
   return (
     <>
-      <div className="p-6  w-full  ">
-        <nav className="sticky top-0 z-50 bg-white/95 w-full shadow-xl backdrop-blur-2xl    ">
+      <div className="sticky top-4 z-50 px-4 sm:px-8 lg:px-8">
+        <div className="bg-white/95 rounded-[4px] shadow-lg backdrop-blur-2xl md:p-2">
+          <nav className="w-full p-2">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex w-full items-center justify-between h-16">
+            <div className="flex w-full items-center justify-between h-10">
               {/* Logo */}
               <div className="shrink-0 -ml-2">
                 <Link href="/">
@@ -57,7 +58,7 @@ export const Navbar = () => {
                 </Link>
               </div>
 
-              <div className="flex items-center justify-center h-full -mt-2 gap-6">
+              <div className="flex items-center justify-center h-full  gap-6">
                 {/* Desktop Navigation */}
                 <div className="hidden md:flex items-center gap-8">
                   {navLinks.map((link) => (
@@ -139,6 +140,7 @@ export const Navbar = () => {
             </AnimatePresence>
           </div>
         </nav>
+        </div>
       </div>
 
       {/* Waitlist Dialog */}
@@ -154,7 +156,7 @@ export const Navbar = () => {
         )}
       </AnimatePresence>
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="sm:w-full">
+        <DialogContent className="w-[95%] sm:w-[90%] md:w-full max-w-lg mx-auto max-h-[90vh] overflow-y-auto p-4 sm:p-6">
           <div className="w-full">
             <div className="text-center space-y-2 p-2 mb-8">
               <h2 className="text-3xl text-[#1E4C44] font-namian-bold ">
@@ -189,7 +191,7 @@ export const Navbar = () => {
         )}
       </AnimatePresence>
       <Dialog open={showSuccessDialog} onOpenChange={setShowSuccessDialog}>
-        <DialogContent className="sm:w-[90%] ">
+        <DialogContent className="w-[95%] sm:w-[90%] md:w-full max-w-lg mx-auto max-h-[90vh] overflow-y-auto p-4 sm:p-6">
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
