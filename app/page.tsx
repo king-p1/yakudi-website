@@ -11,6 +11,7 @@ const HomePage = () => {
       <main className='flex-1'>
         <Hero/>
         <FAQ/>
+        <PromoVideoDialog/>
       </main>
       <Footer/>
     </div>

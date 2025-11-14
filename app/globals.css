@@ -808,6 +808,11 @@
     padding: 0.5rem; /* Tailwind p-2 = 0.5rem = 8px */
     margin-top: 20px;
   }
+  .mobile-top-reduce {
+    
+    margin-top: -40px;
+    margin-bottom: 2px;
+  }
   .mobile-center {
     text-align: center; /* Tailwind p-2 = 0.5rem = 8px */
   }
