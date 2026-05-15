@@ -1,28 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextRequest, NextResponse } from 'next/server';
-import  prisma  from '@/lib/prisma';
+import { prisma } from '@/lib/prisma';
 import crypto from 'crypto';
 
 const ALGORITHM = 'aes-256-gcm';
 const SECRET_KEY = process.env.ENCRYPTION_KEY!;
 const API_DECRYPTION_KEY = process.env.API_DECRYPTION_KEY!; // Separate auth key
 
-const decryptPhone = (
-  encryptedData: string,
-  iv: string,
-  authTag: string
-): string => {
+const decrypt = (encryptedData: string, iv: string, authTag: string): string => {
   const decipher = crypto.createDecipheriv(
     ALGORITHM,
     Buffer.from(SECRET_KEY, 'hex'),
     Buffer.from(iv, 'hex')
   );
-
   decipher.setAuthTag(Buffer.from(authTag, 'hex'));
-
   let decrypted = decipher.update(encryptedData, 'hex', 'utf8');
   decrypted += decipher.final('utf8');
-
   return decrypted;
 }
 
@@ -63,10 +56,12 @@ export const GET = async (request: NextRequest) => {
       prisma.user.count({ where }),
     ]);
 
-    // Decrypt phone numbers
-    const decryptedUsers = users.map((user) => ({
+    const decryptedUsers = users.map((user: { id: any; phoneNumber: string; phoneIV: string; phoneAuthTag: string; emailAddress: string; emailIV: string; emailAuthTag: string; createdAt: any; }) => ({
       id: user.id,
-      phoneNumber: decryptPhone(user.phoneNumber, user.phoneIV, user.phoneAuthTag),
+      phoneNumber: decrypt(user.phoneNumber, user.phoneIV, user.phoneAuthTag),
+      email: user.emailAddress
+        ? decrypt(user.emailAddress, user.emailIV!, user.emailAuthTag!)
+        : null,
       createdAt: user.createdAt,
     }));
 

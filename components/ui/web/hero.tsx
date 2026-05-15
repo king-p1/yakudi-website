@@ -4,7 +4,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { WaitlistNumber } from "@/components/waitlist/waitlist-number";
+import { WaitlistForm } from "@/components/waitlist/waitlist-form";
 import demoImg from '@/public/demo-image.png'
 
 export const Hero = () => {
@@ -40,7 +40,7 @@ export const Hero = () => {
 
             {/* Waitlist Form */}
             <div className="-mt-2">
-              <WaitlistNumber />
+              <WaitlistForm />
             </div>
           </motion.div>
 

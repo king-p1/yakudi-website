@@ -575,7 +575,7 @@
 
 
 
-/* app/globals.css or components/WaitlistNumber.css */
+/* app/globals.css or components/WaitlistForm.css */
 
 /* ========== Phone Input Wrapper ========== */
 .phone-input-wrapper {
@@ -770,37 +770,6 @@
     box-shadow: 0 10px 35px -5px rgba(var(--primary-rgb), 0.4);
   }
 }
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 @media screen and (max-width: 520px) {

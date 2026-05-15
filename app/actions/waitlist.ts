@@ -1,75 +1,66 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use server';
 
-import prisma  from '@/lib/prisma';
+import { prisma } from '@/lib/prisma';
 import crypto from 'crypto';
 import { z } from 'zod';
 
 const phoneSchema = z.string().min(10).max(20);
+const emailSchema = z.string().email();
 
-// Encryption configuration
 const ALGORITHM = 'aes-256-gcm';
-const SECRET_KEY = process.env.ENCRYPTION_KEY!; // Must be 32 bytes (64 hex chars)
+const SECRET_KEY = process.env.ENCRYPTION_KEY!;
 
 if (!SECRET_KEY || Buffer.from(SECRET_KEY, 'hex').length !== 32) {
   throw new Error('ENCRYPTION_KEY must be 32 bytes (64 hex characters)');
 }
 
-function encryptPhone(phoneNumber: string): {
-  encryptedData: string;
-  iv: string;
-  authTag: string;
-} { 
+function encrypt(value: string): { encryptedData: string; iv: string; authTag: string } {
   const iv = crypto.randomBytes(16);
-  const cipher = crypto.createCipheriv(
-    ALGORITHM,
-    Buffer.from(SECRET_KEY, 'hex'),
-    iv
-  );
-
-  let encrypted = cipher.update(phoneNumber, 'utf8', 'hex');
+  const cipher = crypto.createCipheriv(ALGORITHM, Buffer.from(SECRET_KEY, 'hex'), iv);
+  let encrypted = cipher.update(value, 'utf8', 'hex');
   encrypted += cipher.final('hex');
-
-  const authTag = cipher.getAuthTag();
-
   return {
     encryptedData: encrypted,
     iv: iv.toString('hex'),
-    authTag: authTag.toString('hex'),
+    authTag: cipher.getAuthTag().toString('hex'),
   };
 }
 
-function hashPhone(phoneNumber: string): string {
-  return crypto.createHash('sha256').update(phoneNumber).digest('hex');
+function hash(value: string): string {
+  return crypto.createHash('sha256').update(value).digest('hex');
 }
 
-export async function submitPhoneNumber(phoneNumber: string) {
+export async function submitWaitlistEntry(phoneNumber: string, email: string) {
   try {
-    // Validate input
     const validatedPhone = phoneSchema.parse(phoneNumber);
+    const validatedEmail = emailSchema.parse(email.toLowerCase().trim());
 
-    // Encrypt phone number
-    const { encryptedData, iv, authTag } = encryptPhone(validatedPhone);
+    const phoneEncrypted = encrypt(validatedPhone);
+    const emailEncrypted = encrypt(validatedEmail);
 
-    // Hash phone number for uniqueness checking
-    const phoneHash = hashPhone(validatedPhone);
-
-    // Save to database
     await prisma.user.create({
       data: {
-        phoneNumber: encryptedData,
-        phoneIV: iv,
-        phoneAuthTag: authTag,
-        phoneHash: phoneHash,
+        phoneNumber: phoneEncrypted.encryptedData,
+        phoneIV: phoneEncrypted.iv,
+        phoneAuthTag: phoneEncrypted.authTag,
+        phoneHash: hash(validatedPhone),
+        emailAddress: emailEncrypted.encryptedData,
+        emailIV: emailEncrypted.iv,
+        emailAuthTag: emailEncrypted.authTag,
+        emailHash: hash(validatedEmail),
       },
     });
 
     return { success: true };
   } catch (error: any) {
-    console.error('Failed to save phone number:', error);
+    console.error('Failed to save waitlist entry:', error);
 
-    // Handle duplicate phone
     if (error.code === 'P2002') {
+      const target = error.meta?.target as string[] | undefined;
+      if (target?.includes('emailHash')) {
+        return { success: false, error: 'This email is already on the waitlist' };
+      }
       return { success: false, error: 'This number is already on the waitlist' };
     }
 

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { WaitlistNumber } from "@/components/waitlist/waitlist-number";
+import { WaitlistForm } from "@/components/waitlist/waitlist-form";
 import { Menu, X } from "lucide-react";
 import { PartyPopper } from "@/components/animate-ui/icons/party-popper";
 import Link from "next/link";
@@ -166,7 +166,7 @@ export const Navbar = () => {
                 Be the first to know when Yakudi launches
               </p>
             </div>
-            <WaitlistNumber
+            <WaitlistForm
               isStacked={true}
               showInternalSuccess={false}
               onSuccess={() => {
