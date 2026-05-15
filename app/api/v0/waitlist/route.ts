@@ -56,7 +56,7 @@ export const GET = async (request: NextRequest) => {
       prisma.user.count({ where }),
     ]);
 
-    const decryptedUsers = users.map((user: { id: any; phoneNumber: string; phoneIV: string; phoneAuthTag: string; emailAddress: string; emailIV: string; emailAuthTag: string; createdAt: any; }) => ({
+    const decryptedUsers = users.map((user) => ({
       id: user.id,
       phoneNumber: decrypt(user.phoneNumber, user.phoneIV, user.phoneAuthTag),
       email: user.emailAddress
